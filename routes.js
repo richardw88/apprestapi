@@ -1,4 +1,4 @@
-// membuat semacam navigasi
+// routes berfungsi untuk membuat navigasi untuk url method get put post delete
 
 'use strict';
 
@@ -8,4 +8,8 @@ module.exports = function(app) {
 
     app.route('/')
         .get(jsonku.index);
+
+    app.route('/tampil')
+        .get(jsonku.tampilsemuamahasiswa);
+
 }
