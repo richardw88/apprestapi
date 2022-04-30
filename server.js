@@ -9,6 +9,12 @@ app.use(bodyParser.json());
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//menjalankan routes app
+const routes = require('./routes')
+routes(app);
+
+
 app.listen(3000, () => {
     console.log(`Server started on port 3000`);
 });
