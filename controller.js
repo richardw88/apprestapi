@@ -81,7 +81,7 @@ exports.hapusMahasiswa = function (req, res) {
         });
 };
 
-// menampilkan matakuliah group
+// menampilkan matakuliah dengan nested group
 exports.tampilgroupmatakuliah = function(req, res){
     connection.query('SELECT mahasiswa.id_mahasiswa, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matakuliah.matakuliah, matakuliah.sks FROM krs JOIN matakuliah JOIN mahasiswa WHERE krs.id_matakuliah = matakuliah.id_matakuliah AND krs.id_mahasiswa = mahasiswa.id_mahasiswa ORDER BY mahasiswa.id_mahasiswa',
         function(error, rows, fields){
@@ -89,6 +89,19 @@ exports.tampilgroupmatakuliah = function(req, res){
                 console.log(error);
             }else{
                 response.oknested(rows, res);
+            }
+        }
+    )
+}
+
+// menampilkan matakuliah group // tanpa nested
+exports.tampilgroupmatakuliah2 = function(req, res){
+    connection.query('SELECT mahasiswa.id_mahasiswa, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matakuliah.matakuliah, matakuliah.sks FROM krs JOIN matakuliah JOIN mahasiswa WHERE krs.id_matakuliah = matakuliah.id_matakuliah AND krs.id_mahasiswa = mahasiswa.id_mahasiswa ORDER BY mahasiswa.id_mahasiswa',
+        function(error, rows, fields){
+            if(error){
+                console.log(error);
+            }else{
+                response.ok(rows, res);
             }
         }
     )

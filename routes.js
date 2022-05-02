@@ -24,6 +24,11 @@ module.exports = function(app) {
     app.route('/hapus')
         .delete(jsonku.hapusMahasiswa);
 
+    // dengan nested
     app.route('/tampilmatakuliah')
         .get(jsonku.tampilgroupmatakuliah);   
+
+    // tanpa nested   
+    app.route('/tampilmatakuliah2')
+        .get(jsonku.tampilgroupmatakuliah2);  
 }
