@@ -18,7 +18,7 @@ exports.oknested = function(values,res) {
         if(akumulasi[item.nama]){
             //buat variable group nama mahasiswa
             const group = akumulasi[item.nama];
-            //cek jika isi array adalah matakuliah
+            //cek jika isi array adalah matakuliah = apakah bernilai true ?
             if(Array.isArray(group.matakuliah)){
                 //tambahkan value ke dalam group matakuliah
                 group.matakuliah.push(item.matakuliah);
@@ -29,7 +29,7 @@ exports.oknested = function(values,res) {
             akumulasi[item.nama] = item;
         }
         return akumulasi;
-    },{});
+    },{}); //berfungsi untuk mendeklarasikan {} di awal 
     var data = {
         'status' : 200,
         'values' :  hasil
