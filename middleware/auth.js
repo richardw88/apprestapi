@@ -6,6 +6,7 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/secret');
 var ip = require('ip');
 
+
 //controller untuk register
 exports.registrasi = function (req, res) {
     var post = {
@@ -64,7 +65,7 @@ exports.login = function (req, res) {
         } else {
             if (rows.length == 1) {
                 var token = jwt.sign({ rows }, config.secret, {
-                    expiresIn: 30 // wktu lama akses token
+                    expiresIn: 1440 // wktu lama akses token
                 });
                 id_user = rows[0].id; // cek data untuk dimasukan ke akses_token melalui id_user di table user
 
@@ -99,4 +100,9 @@ exports.login = function (req, res) {
             }
         }
     });
+}
+
+// membuat halaman rahasia untuk di akses hanya role tertentu
+exports.halamanRahasia = function(req,res){
+    response.ok("Halaman ini hanya dapat di akses oleh role 2 !", res);
 }
