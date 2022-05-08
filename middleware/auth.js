@@ -8,7 +8,7 @@ var ip = require('ip');
 
 //controller untuk register
 exports.registrasi = function (req, res) {
-    const post = {
+    var post = {
         username: req.body.username,
         email: req.body.email,
         password: md5(req.body.password),
@@ -17,8 +17,8 @@ exports.registrasi = function (req, res) {
     };
     
     // membuat querry untuk nge cek apakah sudah pernah terdaftar emailnya / belum 
-    const query = "SELECT email FROM ?? WHERE ??";
-    const table = ["user", "email", post.email];
+    var query = "SELECT email FROM ?? WHERE ??=?"; // SELECT email FROM user WHERE email = ....@gmail.com
+    var table = ["user", "email", post.email];
 
     // mysql.format akan menjalakan variable dari querry dan table
     query = mysql.format(query, table);
@@ -29,10 +29,10 @@ exports.registrasi = function (req, res) {
             console.log(error)
         }else{
             if(rows.length == 0){
-                const query = "INSERT INTO ?? SET ?"; // INSERT INTO "tabel user" SET [array di post]
-                const table = ["user"];
-                query = mysql.format(query, table);
-                connection.query(query, post, function(error, rows){
+                var query = "INSERT INTO ?? SET ?"; // INSERT INTO "tabel user" SET [array di var.post]
+                var table = ["user"];
+                query = mysql.format(query, table); //mmenjalankan querry dari var query dan var table
+                connection.query(query, post, function(error, rows){  // menjalankan query dan array post
                     if (error){
                         console.log(error);
                     }else{
