@@ -7,7 +7,7 @@ function verifikasi() {
         // cek authorization header
         var tokenWithBearer = req.headers.authorization;
         if (tokenWithBearer) {
-            var token = tokenWithBearer.split(' ')[1];
+            var token = tokenWithBearer.split(' ')[1]; //
 
             // verifikasi 
             jwt.verify(token, config.secret, function (err, decoded) {
